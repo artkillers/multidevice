@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System Information</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1b1b1b;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.4);
+            overflow: auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 30px;
+            background-color: #333;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.6em;
+            color: #00ff00;
+            margin-bottom: 0;
+            position: relative;
+            animation: glitch 1.5s infinite alternate;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5), 0 0 10px rgba(0, 255, 0, 0.4);
+        }
+
+        .stats-information {
+            margin-top: 30px;
+        }
+
+        .stats-information h2 {
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: #00ff00;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            animation: glitch 1.5s infinite alternate;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            padding: 10px;
+            background-color: #444;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .stat-item .stat-label {
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .stat-item .stat-value {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .hr {
+            border: 1px solid #444;
+            margin: 30px 0;
+        }      
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 0 rgba(0,255,0,0.5), -2px 0 0 rgba(0,255,0,0.4); }
+            25% { text-shadow: -2px 0 0 rgba(0,255,0,0.5), 2px 0 0 rgba(0,255,0,0.4); }
+            50% { text-shadow: 2px 0 0 rgba(0,255,0,0.5), -2px 0 0 rgba(0,255,0,0.4); }
+            75% { text-shadow: -2px 0 0 rgba(0,255,0,0.5), 2px 0 0 rgba(0,255,0,0.4); }
+            100% { text-shadow: 2px 0 0 rgba(0,255,0,0.5), -2px 0 0 rgba(0,255,0,0.4); }
+        }
+        
+        @keyframes blink {
+            50% { color: transparent; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.6em;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+</style>
+<body oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;">
+  <div class="container">
+    <br />
+    <h1>MULTI DEVICE</h1>
+    <br />
+    <p>
+      This code creates a responsive web page to display system information interactively.
+      Using a three-column grid layout, it shows data such as platform, OS, CPU, memory,
+      and more, enhanced with a futuristic glitch effect for a modern look.
+    </p>
+    <br />
+    <div class="stats-information">
+      <h2>System Information Overview</h2>
+      <br />
+      <div class="stats">
+        <div class="stat-item">
+          <i class="icon fas fa-user-circle"></i>
+          <p class="stat-label">Platform</p>
+          <p class="stat-value" id="platform">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-desktop"></i>
+          <p class="stat-label">OS</p>
+          <p class="stat-value" id="os">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-microchip"></i>
+          <p class="stat-label">CPU / Cores</p>
+          <p class="stat-value" id="cpuGpuInfo">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-memory"></i>
+          <p class="stat-label">Memory</p>
+          <p class="stat-value" id="memoryCapacity">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-hdd"></i>
+          <p class="stat-label">Storage</p>
+          <p class="stat-value" id="storageCapacity">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-network-wired"></i>
+          <p class="stat-label">IP Address</p>
+          <p class="stat-value" id="ipAddress">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-calendar"></i>
+          <p class="stat-label">Date</p>
+          <p class="stat-value" id="dateValue">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-clock"></i>
+          <p class="stat-label">Time</p>
+          <p class="stat-value" id="timeValue">Loading...</p>
+        </div>
+        <div class="stat-item">
+          <i class="icon fas fa-stopwatch"></i>
+          <p class="stat-label">Stopwatch</p>
+          <p class="stat-value" id="uptimeValue">Loading...</p>
+        </div>
+      </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Platform info
+    document.getElementById('platform').textContent = navigator.platform;
+
+    // OS info (Browser-specific, not available in all cases)
+    const os = navigator.userAgent;
+    document.getElementById('os').textContent = getOSInfo(os);
+
+    // CPU / GPU info
+    document.getElementById('cpuGpuInfo').textContent = `${navigator.hardwareConcurrency} cores`;
+
+    // Memory info
+    if (navigator.deviceMemory) {
+        document.getElementById('memoryCapacity').textContent = `${navigator.deviceMemory} GB`;
+    } else {
+        document.getElementById('memoryCapacity').textContent = 'Unavailable';
+    }
+
+    // Storage info
+    if (navigator.storage && navigator.storage.estimate) {
+        navigator.storage.estimate().then(estimate => {
+            document.getElementById('storageCapacity').textContent = `${(estimate.quota / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+        });
+    } else {
+        document.getElementById('storageCapacity').textContent = 'Unavailable';
+    }
+
+    // Fetching public IP address
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('ipAddress').textContent = data.ip;
+        })
+        .catch(() => {
+            document.getElementById('ipAddress').textContent = 'Error fetching IP';
+        });    
+
+    // Browser info
+    document.getElementById('browserInfo').textContent = navigator.userAgent;
+
+    // User Agent
+    document.getElementById('userAgent').textContent = navigator.userAgent;
+    // Function to extract OS information from User Agent string
+    function getOSInfo(userAgent) {
+    const os = {
+        "Windows": /Windows NT/i,
+        "MacOS": /Macintosh/i,
+        "Linux": /Linux/i,
+        "Android": /Android/i,
+        "iOS": /iPhone|iPad/i
+    };
+
+    for (let key in os) {
+        if (os[key].test(userAgent)) {
+            return key;
+        }
+    }
+    return "Unknown";
+    }
+    
+    });
+
+    let startTime = Date.now(); // Waktu mulai halaman
+    // Update uptime, date, and time setiap detik
+    setInterval(() => {
+    // Hitung waktu berlalu untuk uptime
+    let elapsed = Date.now() - startTime;
+    let seconds = Math.floor(elapsed / 1000) % 60;
+    let minutes = Math.floor(elapsed / (1000 * 60)) % 60;
+    let hours = Math.floor(elapsed / (1000 * 60 * 60));
+
+    // Format uptime jadi HH:MM:SS
+    let formattedUptime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    document.getElementById('uptimeValue').textContent = formattedUptime;
+
+    // Tampilkan tanggal real-time
+    const now = new Date();
+    const dateString = now.toLocaleDateString(); // Format tanggal (MM/DD/YYYY)
+    document.getElementById('dateValue').textContent = dateString;
+
+    // Tampilkan waktu real-time
+    const timeString = now.toLocaleTimeString(); // Format waktu (HH:MM:SS)
+    document.getElementById('timeValue').textContent = timeString;
+
+    }, 1000); // Update setiap 1 detik
+    
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
+
+  </script>
+</body>
+</html>
